@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
+import { LogicService } from './logic.service';
 
 @Component({
   selector: 'app-root',
   template: `
-    <app-header></app-header>
+  <div class="container text-center">
+      <app-play-board></app-play-board>
+    </div>
   `,
-  styles: ['']
+  styles: [' .container {background: lightgray; width:70%;}']
 })
 export class AppComponent {
   title = 'Whack-A-Mole-Game';
