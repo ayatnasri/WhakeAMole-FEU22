@@ -1,6 +1,6 @@
 export type State = {
     timeStart: number;
-}
+};
 
 export type Moles = {
     clicked:boolean,

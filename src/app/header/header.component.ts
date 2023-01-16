@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output , OnInit} from '@angular/core';
-import { State } from '../datatype';
+import { Moles, State } from '../datatype';
 import { LogicService } from '../logic.service';
-import { MoleComponent } from '../mole/mole.component';
 
 @Component({
   selector: 'app-header',
   template: `
-    <h3> {{title}} </h3>
+   
     <div class="d-flex justify-content-between m-3 header">
       <div class="flex-column">
         <h6>Time remaining:</h6>
@@ -17,7 +16,7 @@ import { MoleComponent } from '../mole/mole.component';
         <span> {{points}} </span>
       </div>
       <div class="flex-column">
-        <button class="btn btn-danger" *ngIf="state.timeStart == 60" (click)="onStartTimer()">start </button>
+        <button class="btn btn-danger" *ngIf="state.timeStart == 60"  (click)="onStartTimer()">start </button>
         <button class="btn btn-danger"  *ngIf="state.timeStart == 0"  (click)="onResetTimer()">Play again</button>
       </div>
     </div>
@@ -26,11 +25,6 @@ import { MoleComponent } from '../mole/mole.component';
   styles: [`
     .header{
       height:auto;
-    }
-    h3{
-      text-align:center;
-      color:rgb(220,53,69);
-      padding:0;
     }
     h6{
       font-size:10px;
@@ -44,34 +38,23 @@ import { MoleComponent } from '../mole/mole.component';
     `]
 })
 export class HeaderComponent implements OnInit {
-  title:string = 'Whake A Mole Game'
+
   state!:State;
-  public points:number = 0;
 
-  constructor(private _state: LogicService){
+  @Input() points:number=0;   // binding from parents (app-component) to child to show points 
+
+  constructor(private _state: LogicService){    // dependency injection -get the data from service 
     this.state = this._state.state;
-  
-    
-
   }
   
-  onStartTimer(){   // call back from service - Click Handel
+  onStartTimer(){   // call back from service - starter the timer and random number
     this._state.timerStart();
   }
-  onResetTimer(){   // call back from service - Click Handel
+  onResetTimer(){   // call back from service - reset the game
     this._state.timerReset();
   }
 
-  // Points :
-
-
- // onAddPoints(){
-   // this._state.AddPoints();
- // }
-
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
   
   
 

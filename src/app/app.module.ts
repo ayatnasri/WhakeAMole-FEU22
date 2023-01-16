@@ -5,21 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
-import { GridBoxesComponent } from './grid-boxes/grid-boxes.component';
 
 import { FormsModule } from '@angular/forms';
 import { LogicService } from './logic.service';
 import { MoleComponent } from './mole/mole.component';
 import { PlayBoardComponent } from './play-board/play-board.component';
+import { ImgVisibleComponent } from './img-visible/img-visible.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    GridBoxesComponent,
     MoleComponent,
-    PlayBoardComponent
+    PlayBoardComponent,
+    ImgVisibleComponent
   
   ],
   imports: [
