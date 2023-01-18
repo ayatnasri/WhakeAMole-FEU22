@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Moles } from './datatype';
 import { LogicService } from './logic.service';
 
@@ -7,8 +7,8 @@ import { LogicService } from './logic.service';
   template: `
   <div class="container text-center">
       <h3> {{title}}</h3>
-      <app-header [points]="addpoints"></app-header>
-      <app-play-board (moleSelected)="moleSelectedNow($event)"></app-play-board>
+      <app-header></app-header>
+      <app-play-board></app-play-board>
     </div>
    
   `,
@@ -18,16 +18,8 @@ export class AppComponent {
   title:string = 'Whake A Mole Game'
   moles:Moles[] = [];
 
-  addpoints!:number; // 1- create a variable for points - use property pinding
-
   constructor(private _moles: LogicService){
     this.moles = this._moles.getMole();
   }
-
-  moleSelectedNow(points:number){   // when emit the points call this method
-    console.log(points);
-    this.addpoints = points;
-  }
-
 
 }

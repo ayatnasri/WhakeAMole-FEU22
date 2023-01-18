@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output , OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Moles, State } from '../datatype';
 import { LogicService } from '../logic.service';
 
@@ -13,7 +13,7 @@ import { LogicService } from '../logic.service';
       </div>
       <div class="flex-column">
         <h6>Points:</h6>
-        <span> {{points}} </span>
+        <span>{{state.points}}</span>
       </div>
       <div class="flex-column">
         <button class="btn btn-danger" *ngIf="state.timeStart == 60"  (click)="onStartTimer()">start </button>
@@ -38,11 +38,7 @@ import { LogicService } from '../logic.service';
     `]
 })
 export class HeaderComponent implements OnInit {
-
   state!:State;
-
-  @Input() points:number=0;   // binding from parents (app-component) to child to show points 
-
   constructor(private _state: LogicService){    // dependency injection -get the data from service 
     this.state = this._state.state;
   }
@@ -56,16 +52,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
   
-  
-
-  
-
 }
-/*
-  <button class="btn btn-danger" (click)="onAddPoints()"> Add Points </button>
-  AddPoints(){
-    this.points++;
-    this.pointsChange.emit(this.points)
-  }
-  @Output() pointsChange = new EventEmitter<number>();
-*/

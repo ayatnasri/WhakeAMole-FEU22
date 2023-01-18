@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { LogicService } from './logic.service';
 import { MoleComponent } from './mole/mole.component';
 import { PlayBoardComponent } from './play-board/play-board.component';
-import { ImgVisibleComponent } from './img-visible/img-visible.component';
+
 
 
 @NgModule({
@@ -19,8 +19,7 @@ import { ImgVisibleComponent } from './img-visible/img-visible.component';
     HeaderComponent,
     MoleComponent,
     PlayBoardComponent,
-    ImgVisibleComponent
-  
+
   ],
   imports: [
     BrowserModule,

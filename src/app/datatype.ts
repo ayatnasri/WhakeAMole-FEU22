@@ -1,9 +1,10 @@
 export type State = {
     timeStart: number;
+    hol:Moles[];
+    points:number;
 };
 
 export type Moles = {
-    clicked:boolean,
     id:number,
     visible:boolean
 };
