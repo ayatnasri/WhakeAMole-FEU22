@@ -1,55 +1,78 @@
-import { Component, OnInit} from '@angular/core';
-import { Moles, State } from '../datatype';
+import { Component} from '@angular/core';
+import { State } from '../datatype';
 import { LogicService } from '../logic.service';
 
 @Component({
   selector: 'app-header',
   template: `
-   
-    <div class="d-flex justify-content-between m-3 header">
-      <div class="flex-column">
-        <h6>Time remaining:</h6>
-        <span>{{state.timeStart}}</span>
-      </div>
-      <div class="flex-column">
-        <h6>Points:</h6>
-        <span>{{state.points}}</span>
-      </div>
-      <div class="flex-column">
-        <button class="btn btn-danger" *ngIf="state.timeStart == 60"  (click)="onStartTimer()">start </button>
-        <button class="btn btn-danger"  *ngIf="state.timeStart == 0"  (click)="onResetTimer()">Play again</button>
+    <div class="header-container">
+      <div class="d-flex justify-content-between header">
+        <div class="flex-column">
+          <h6>Time remaining:</h6>
+          <span>{{ state.timeStart }}</span>
+        </div>
+        <div class="flex-column">
+          <h6>Points:</h6>
+          <span>{{ state.points }}</span>
+        </div>
+        <div class="flex-column button-div">
+          <button class="playBtn" *ngIf="state.timeStart == 60" (click)="onStartTimer()"> Start </button>
+          <button class="resetBtn" *ngIf="state.timeStart == 0" (click)="onResetTimer()"> Play again </button>
+        </div>
       </div>
     </div>
-    
   `,
   styles: [`
+    .header-container{
+      width:80;
+    }
     .header{
       height:auto;
+      padding: 0 25px;
     }
     h6{
-      font-size:10px;
+      font-size:22px;
     }
     span{
-      font-size: 20px;
+      font-size:22px;
     }
     button{
-      font-size:15px;
+      width:170px;
+      height:55px;
+      font-size:22px;
+      border:none;
+      border-radius:20px;
+    }
+    .button-div{
+      padding:20px;
+    }
+    button:hover{
+      background-color:rgb(20,46,27);
+      color:white;
+    }
+    .playBtn{
+      background-color:black;
+      color:white;
+    }
+    .resetBtn{
+      background-color:white;
+      color:black;
     }
     `]
 })
-export class HeaderComponent implements OnInit {
-  state!:State;
-  constructor(private _state: LogicService){    // dependency injection -get the data from service 
+export class HeaderComponent  {
+  // A variable has the data from service.
+  state!:State;  
+
+ // Dependency injection - Get the data from service 
+  constructor(private _state: LogicService){   
     this.state = this._state.state;
   }
   
-  onStartTimer(){   // call back from service - starter the timer and random number
+  onStartTimer(){   // Starter the game when click the statrt button.
     this._state.timerStart();
   }
-  onResetTimer(){   // call back from service - reset the game
+  onResetTimer(){   //Reset the game when click the reset button.
     this._state.timerReset();
   }
-
-  ngOnInit(): void {}
-  
 }

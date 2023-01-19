@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Moles, State } from '../datatype';
 import { LogicService } from '../logic.service';
 import { Input } from '@angular/core';
@@ -8,13 +8,15 @@ import { Input } from '@angular/core';
   selector: 'app-mole',
   template: `
     <div id="moleBox">
-        {{aMole.id}}
+
         <ng-container *ngIf="aMole.visible; else hiddenTheImg">
-          <img class="moleImg" src="/assets/Animal.jpg" width="80%" height="80%" (click)="onClickaddPoints(aMole.id)" />
+          <img class="moleImg mole" src="/assets/mole2.jpg" width="80%" height="80%" (click)="onClick(aMole.id)" />
         </ng-container>
         
         <ng-template #hiddenTheImg>
-          <div class="hideImg"> not visible</div>
+          <div class="hideImg">
+            <img class="moleImg" src="/assets/background.jpg" width="80%" height="80%" />
+          </div>
         </ng-template>
 
     </div>
@@ -22,32 +24,29 @@ import { Input } from '@angular/core';
   `,
   styles: [ `
     #moleBox{
-      width:160px;
-      height:140px;
-      border: 1px solid black;
-      background-color:white;
-      margin-bottom: 2px;
+      width:150px;
+      height:130px;
     };
     .hideImg{
-      background-color:rgb(119,119,119);
-      height:80%;
+      background-color:rgb(177,172,100);
+      height:100%;
     };
-   
-
+   .mole{
+    padding:10px 0;
+   }
   `
   ]
 })
-export class MoleComponent implements OnInit{
-  moles:Moles[]= [];
-  @Input() aMole:Moles = { id:1, visible:true};
+export class MoleComponent{
+   // Variables which have the data from service.
+  @Input() aMole:Moles = { id:1, visible:true}; // Data binding - from parents (play-board component) to child
   state!:State;
   constructor( private _moles: LogicService){
-    this.moles= this._moles.getMole();
     this.state = this._moles.state;
   }
-  onClickaddPoints(id:number){
-      this._moles.ClickaddPoints(this.aMole.id);  
+
+  onClick(id:number){ // When click on the mole - pass the mole id to service. 
+      this._moles.ClickTheMole(this.aMole.id);  
   }
-ngOnInit(): void { }
 }
 
