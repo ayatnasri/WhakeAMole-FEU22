@@ -16,8 +16,8 @@ import { LogicService } from '../logic.service';
           <span>{{ state.points }}</span>
         </div>
         <div class="flex-column button-div">
-          <button class="playBtn" *ngIf="state.timeStart == 60" (click)="onStartTimer()"> Start </button>
-          <button class="resetBtn" *ngIf="state.timeStart == 0" (click)="onResetTimer()"> Play again </button>
+          <button class="playBtn" *ngIf="state.timeStart == 60" (click)="onStartTimer()"> START </button>
+          <button class="resetBtn" *ngIf="state.timeStart == 0" (click)="onResetTimer()"> PLAY AGAIN </button>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ import { LogicService } from '../logic.service';
       font-size:22px;
     }
     span{
-      font-size:22px;
+      font-size:50px;
     }
     button{
       width:170px;
@@ -45,10 +45,11 @@ import { LogicService } from '../logic.service';
     }
     .button-div{
       padding:20px;
+      width: 30%;
     }
     button:hover{
-      background-color:rgb(20,46,27);
-      color:white;
+      background-color:rgb(112,189,133);
+      color:black;
     }
     .playBtn{
       background-color:black;
