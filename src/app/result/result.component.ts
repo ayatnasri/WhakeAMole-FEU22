@@ -1,9 +1,9 @@
 import { Component ,OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection ,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Player, State } from '../datatype';
 import { LogicService } from '../logic.service';
 import { map } from 'rxjs/operators';
-import { Router, ActivatedRoute  } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -17,7 +17,7 @@ import { Router, ActivatedRoute  } from '@angular/router';
         </tr>
         <tr *ngFor="let player of players | async" >
           <td>{{player.data.name}}</td>
-          <td>{{this.state.points}}</td>
+          <td>{{player.data.points}}</td>
         </tr>
     </table>
     <button (click)="closeResult()"> Close </button>
@@ -42,11 +42,11 @@ export class ResultComponent implements OnInit{
   players: any; // this have observable
   state!:State;
   newPlayer!:Player;
-  id:string;
 
-  constructor(private __afs:AngularFirestore, private __router:Router, private _state: LogicService, private __activatedRoute :ActivatedRoute){
+
+  constructor(private __afs:AngularFirestore, private __router:Router, private _state: LogicService){
     this.state = this._state.state;
-    this.newPlayer = this._state.newPlayer;
+    this.newPlayer.points = this.state.points;
   }
   ngOnInit(): void { // Get the data from observable - Firebase data 
     this.playerLista = this.__afs.collection('players');
@@ -60,13 +60,6 @@ export class ResultComponent implements OnInit{
       })
     );
 
-    this.__activatedRoute.params.subscribe((params) =>{
-      this.id = params['id'];
-    })
-    let document: AngularFirestoreDocument<Player> = this.__afs.doc('players/'+ this.id);
-    document.valueChanges().subscribe((p)=> {
-      this.newPlayer = p;
-    })
   }
 
   closeResult(){
