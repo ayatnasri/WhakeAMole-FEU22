@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { State, Moles } from './datatype'; // Import types from datatype.ts.
+import { State, Moles, Player } from './datatype'; // Import types from datatype.ts.
 
 
 @Injectable({
@@ -43,6 +43,7 @@ public getMole():Moles[] {  // Create a public method that contains array of 25 
 
 // The variables which we need to create methods and attach variables in the components:
 state:State = {timeStart:60 , hol:[], points:0};
+newPlayer:Player = {name: '', points:0}
 interval:any = null;
 randomNumber!:number;
 busyMoles = new Set(); // This will contain max 3 random number to check the number in the busy stage or free. 
@@ -110,17 +111,5 @@ ClickTheMole(id:number){
   }
 }
 
+//**************************************************************************
 }
-
-
-  /*
-        if(this.state.points < 10){
-        alert('Game Over! Your score is : ' +this.state.points);
-      }
-      if(this.state.points > 10 && this.state.points < 25 ){
-        alert('Good! Your score is : ' +this.state.points);
-      }
-      if(this.state.points > 25){
-        alert('Very Good! Your score is : ' +this.state.points);
-      }
-  */

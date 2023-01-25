@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { State } from '../datatype';
 import { LogicService } from '../logic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -45,6 +46,7 @@ import { LogicService } from '../logic.service';
     }
     .button-div{
       padding:20px;
+      width:30%;
     }
     button:hover{
       background-color:rgb(20,46,27);
@@ -65,7 +67,7 @@ export class HeaderComponent  {
   state!:State;  
 
  // Dependency injection - Get the data from service 
-  constructor(private _state: LogicService){   
+  constructor(private _state: LogicService, private __router:Router){   
     this.state = this._state.state;
   }
   
@@ -74,5 +76,6 @@ export class HeaderComponent  {
   }
   onResetTimer(){   //Reset the game when click the reset button.
     this._state.timerReset();
+    this.__router.navigate(['']);
   }
 }
