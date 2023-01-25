@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore ,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router} from '@angular/router';
 import { Player, State } from '../datatype';
 import { LogicService } from '../logic.service';
 
@@ -15,8 +15,6 @@ import { LogicService } from '../logic.service';
       <app-header></app-header>
       <app-play-board></app-play-board>
     </div>
-    
-
   `,
   styles: [ `
   .container {
@@ -38,40 +36,22 @@ import { LogicService } from '../logic.service';
   ` 
   ]
 })
-export class StartGameComponent implements OnInit{
+export class StartGameComponent{
   title:string = 'Whake A Mole Game';
   newPlayer:Player;
   state!:State;
-  id:string;
+
 
   constructor(
     private __router: Router,
     private __afs: AngularFirestore,
-    private _state: LogicService,
-    private __activatedRoute: ActivatedRoute
+    private _state: LogicService
     ){
     this.newPlayer = this._state.newPlayer;
     this.state = this._state.state;
   }
 
-  
-  ngOnInit(): void {
-    this.__activatedRoute.params.subscribe((params) =>{
-      this.id = params['id'];
-    })
-    let document: AngularFirestoreDocument<Player> = this.__afs.doc('players/'+ this.id);
-    document.valueChanges().subscribe((p)=> {
-      this.newPlayer = p;
-    })
-  }
   goToResult(){
-    this.__afs.doc('players/'+ this.id).update(this.newPlayer);
     this.__router.navigate(['result']);
   }
 }
-
-
-/*
-    <div class="alert alert-dark" role="alert" *ngIf="state.timeStart == 0">
-      <a (click)="uppdatePoints(this.state.points)" >Show me my result</a>
-    </div> */
