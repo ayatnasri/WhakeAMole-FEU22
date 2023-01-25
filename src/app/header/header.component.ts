@@ -72,7 +72,7 @@ export class HeaderComponent  {
   }
   
   onStartTimer(){   // Starter the game when click the statrt button.
-    this._state.timerStart();
+    this._state.startGame();
   }
   onResetTimer(){   //Reset the game when click the reset button.
     this._state.timerReset();

@@ -53,7 +53,7 @@ maxVisibleMoles:number = 3
 
 // All the methods : 
 // 1- The main function that starts the Game , Timer and Random number:
-timerStart(){ 
+startGame(){ 
   if(this.state.timeStart <= 0 || this.interval != null) return; // Don't start the timer if timeStart <= 0 or if the timer is running.
   this.interval = setInterval(()=>{ // Create interval for the game.
       this.randomMole();            // Starter random mole during playing interval.
@@ -111,5 +111,5 @@ ClickTheMole(id:number){
   }
 }
 
-//**************************************************************************
+
 }

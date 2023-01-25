@@ -54,7 +54,6 @@ export class StartGameComponent implements OnInit{
     this.state = this._state.state;
   }
 
-  
   ngOnInit(): void {
     this.__activatedRoute.params.subscribe((params) =>{
       this.id = params['id'];
@@ -63,16 +62,10 @@ export class StartGameComponent implements OnInit{
     document.valueChanges().subscribe((p)=> {
       this.newPlayer= p;
     })
-
   }
+
   goToResult(){
     this.__afs.doc('players/'+ this.id).update(this.newPlayer);
     this.__router.navigate(['result']);
   }
 }
-
-
-/*
-    <div class="alert alert-dark" role="alert" *ngIf="state.timeStart == 0">
-      <a (click)="uppdatePoints(this.state.points)" >Show me my result</a>
-    </div> */

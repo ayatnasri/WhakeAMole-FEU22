@@ -5,10 +5,9 @@ import { ResultComponent } from './result/result.component';
 import { StartGameComponent } from './start-game/start-game.component';
 
 const routes: Routes = [
-  {path:'', component: PlayerNameComponent},
-  {path:'play', component: StartGameComponent},
-  {path:'result/:id', component: ResultComponent},
-  {path:'result', component: ResultComponent}
+  {path:'', component: PlayerNameComponent}, //  Enter your name 
+  {path:'play', component: StartGameComponent}, // Start the game 
+  {path:'result', component: ResultComponent} // the result 
 ];
 
 @NgModule({

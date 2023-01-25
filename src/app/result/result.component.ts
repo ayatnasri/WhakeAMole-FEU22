@@ -44,9 +44,12 @@ export class ResultComponent implements OnInit{
   newPlayer!:Player;
 
 
-  constructor(private __afs:AngularFirestore, private __router:Router, private _state: LogicService){
+  constructor(
+    private __afs:AngularFirestore,
+    private __router:Router,
+    private _state: LogicService
+    ){
     this.state = this._state.state;
-    this.newPlayer.points = this.state.points;
   }
   ngOnInit(): void { // Get the data from observable - Firebase data 
     this.playerLista = this.__afs.collection('players');
@@ -59,7 +62,6 @@ export class ResultComponent implements OnInit{
         })
       })
     );
-
   }
 
   closeResult(){
